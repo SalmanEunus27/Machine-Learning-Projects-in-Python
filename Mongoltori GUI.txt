@@ -1,0 +1,324 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Oct 17 10:26:20 2019
+
+@author: Adil
+"""
+from tkinter import *
+import serial
+
+arduinoData = serial.Serial('COM3',9600)
+
+
+#
+## 
+#def serial_ports():    
+#    return serial.tools.list_ports.comports()
+#    
+#
+#
+
+root = Tk()
+root.title('Mongoltori GUI URC2020')
+root.geometry('1000x900')
+
+
+
+#
+#cb = ttk.Combobox(root, values=serial_ports())
+#cb.pack()
+###
+#### assign function to combobox
+#cb.bind('<<ComboboxSelected>>', on_select)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# KeyboardEventRealTimeControlCode#
+def upClick(event):
+    arduinoData.write(b'W')
+    #arduinoData.write(b'w')
+    print("Forward")
+
+
+#    time.sleep(1)
+#    print(arduinoData.readline())
+
+def stop(event):
+    #
+    arduinoData.write(b'B')
+    #arduinoData.write(b'b')
+    print("Not moving")
+
+
+#
+#
+def RightClick(event):
+    arduinoData.write(b'D')
+    #arduinoData.write(b'd')
+    print("Right")
+
+
+def LeftClick(event):
+    arduinoData.write(b'A')
+    #arduinoData.write(b'a')
+    print("Left")
+
+
+def DownClick(event):
+    arduinoData.write(b'S')
+    #arduinoData.write(b's')
+    print("Backward")
+
+
+#
+frame = Frame(root, width=300, height=250)
+#
+#
+
+frame.bind("<KeyPress W>", upClick)
+frame.bind("<KeyPress w>", upClick)
+frame.bind("<KeyRelease W>", stop)
+frame.bind("<KeyRelease w>", stop)
+frame.bind("<KeyPress A>", LeftClick)
+frame.bind("<KeyPress a>", LeftClick)
+frame.bind("<KeyRelease A>", stop)
+frame.bind("<KeyRelease a>", stop)
+frame.bind("<KeyPress D>", RightClick)
+frame.bind("<KeyPress d>", RightClick)
+frame.bind("<KeyRelease D>", stop)
+frame.bind("<KeyRelease d>", stop)
+frame.bind("<KeyPress S>", DownClick)
+frame.bind("<KeyPress s>", DownClick)
+frame.bind("<KeyRelease S>", stop)
+frame.bind("<KeyRelease s>",stop)
+frame.bind("<KeyPress B>",stop)
+frame.bind("<KeyPress b>",stop)
+
+# MouseEventWithGuiCode#
+
+
+def Forward(event):
+    arduinoData.write(b'W')
+    print("Forward")
+
+
+def Backward(event):
+    arduinoData.write(b'S')
+    print("Backward")
+
+
+def Right(event):
+    arduinoData.write(b'D')
+    print("Right")
+
+
+def Left(event):
+    arduinoData.write(b'A')
+    print("Left")
+
+
+def quit(event):
+    arduinoData.write(b'B')
+    print("Not Moving")
+
+
+widget1 = Button(root, text="Forward", bg="blue", fg="black")
+widget3 = Button(root, text="Left", bg="blue", fg="black")
+widget4 = Button(root, text="Backward", bg="blue", fg="black")
+widget5 = Button(root, text="Stop", bg="blue", fg="black")
+widget2 = Button(root, text="Right", bg="blue", fg="black")
+
+widget6 = Button(root, text="Arm stop", bg="silver", fg="black")
+widget7 = Button(root, text="Claw open", bg="silver", fg="black")
+widget8 = Button(root, text="Claw close", bg="silver", fg="black")
+widget9 = Button(root, text="Wrist clockwise", bg="silver", fg="black")
+widget10 = Button(root, text="Wrist Anticlockwise", bg="silver", fg="black")
+widget11 = Button(root, text="Actuator3 open", bg="silver", fg="black")
+widget12 = Button(root, text="Actuator3 close", bg="silver", fg="black")
+widget13 = Button(root, text="Actuator2 open", bg="silver", fg="black")
+widget14 = Button(root, text="Actuator2 close", bg="silver", fg="black")
+widget15 = Button(root, text="Actuator1 open", bg="silver", fg="black")
+widget16 = Button(root, text="Actuator1 close", bg="silver", fg="black")
+widget17 = Button(root, text="Base Clockwise", bg="silver", fg="black")
+widget18 = Button(root, text="Base AntiClockwise", bg="silver", fg="black")
+
+
+# widget19 = Button(root, text="FPV Antenna",bg = "silver" , fg = "black")
+# widget20 = Button(root, text="FPV Reverse",bg = "silver" , fg = "black")
+# widget21 = Button(root, text="FPV Box",bg = "silver" , fg = "black")
+# widget22 = Button(root, text="FPV Wrist",bg = "silver" , fg = "black")
+# widget23 = Button(root, text="Extender Open",bg = "silver" , fg = "black")
+# widget24 = Button(root, text="Extender Close",bg = "silver" , fg = "black")
+# widget25 = Button(root, text="Extender Stop",bg = "silver" , fg = "black")
+
+def ArmStop(e):
+    arduinoData.write(b'V'), e.char
+    print("Arm stops")
+
+
+def ClawOpen(e):
+    arduinoData.write(b'O'), e.char
+    print("Claw opening")
+
+
+def ClawClose(e):
+    arduinoData.write(b'P'), e.char
+    print("Claw closing")
+
+
+def wristclockwise(e):
+    arduinoData.write(b'U'), e.char
+    print("Wrist moving Clockwise")
+
+
+def wristAnticlockwise(e):
+    arduinoData.write(b'K'), e.char
+    print("Wrist moving Anticlockwise")
+
+
+def Acc3Open(e):
+    arduinoData.write(b'Y'), e.char
+    print("Acctuator 3 opening")
+
+
+def Acc3Close(e):
+    arduinoData.write(b'H'), e.char
+    print("Acctuator 3 closing")
+
+
+def Acc2Open(e):
+    arduinoData.write(b'T'), e.char
+    print("Acctuator 2 opening")
+
+
+def Acc2close(e):
+    arduinoData.write(b'G'), e.char
+    print("Acctuator 2 closing")
+
+
+def Acc1Open(e):
+    arduinoData.write(b'R'), e.char
+    print("Acctuator 1 opening")
+
+
+def Acc1close(e):
+    arduinoData.write(b'L'), e.char
+    print("Acctuator 1 closing")
+
+
+def BaseClockwise(e):
+    arduinoData.write(b'M'), e.char
+    print("Base Rotating clockwise")
+
+
+def BaseAnticlockwise(e):
+    arduinoData.write(b'N'), e.char
+    print("Base Rotating Anticlockwise")
+
+
+# def fpvAntenna():
+#    arduinoData.write(b'8')
+#    print("FPV Antenna is activated")
+#
+# def fpvReverse():
+#    arduinoData.write(b'2')
+#    print("FPV Antenna is reversed")
+#
+# def fpvBox():
+#    arduinoData.write(b'4')
+#    print("FPV Box Works")
+#
+#
+# def fpvWrist():
+#    arduinoData.write(b'6')
+#    print("FPV Wrist moves")
+#
+#
+# def ExtenderOpen():
+#    arduinoData.write(b'E')
+#    print("Extender Opens")
+#
+# def ExtenderClose():
+#    arduinoData.write(b'e')
+#    print("Extender Closes")
+#
+# def ExtenderStop():
+#    arduinoData.write(b'C')
+#    print("Extender stops in between")
+
+
+widget1.bind("<Button-1>", Forward)
+widget1.bind("<ButtonRelease-1>", quit)
+widget5.bind("<ButtonRelease-1>", quit)
+widget2.bind("<Button-1>", Right)
+widget2.bind("<ButtonRelease-1>", quit)
+widget3.bind("<Button-1>", Left)
+widget3.bind("<ButtonRelease-1>", quit)
+widget4.bind("<Button-1>", Backward)
+widget4.bind("<ButtonRelease-1>", quit)
+widget4.place(x=600, y=80)
+widget1.place(x=605, y=2)
+widget3.place(x=550, y=40)
+widget5.place(x=610, y=40)
+widget2.place(x=680, y=40)
+
+widget6.bind("<Button-1>", ArmStop)
+widget7.bind("<Button-1>", ClawOpen)
+widget8.bind("<Button-1>", ClawClose)
+widget9.bind("<Button-1>", wristclockwise)
+widget10.bind("<Button-1>", wristAnticlockwise)
+widget11.bind("<Button-1>", Acc3Open)
+widget12.bind("<Button-1>", Acc3Close)
+widget13.bind("<Button-1>", Acc2Open)
+widget14.bind("<Button-1>", Acc2close)
+widget15.bind("<Button-1>", Acc1Open)
+widget16.bind("<Button-1>", Acc1close)
+widget17.bind("<Button-1>", BaseClockwise)
+widget18.bind("<Button-1>", BaseAnticlockwise)
+# widget19.bind("<Button-1>",Forward)
+# widget20.bind("<Button-1>",Forward)
+# widget21.bind("<Button-1>",Forward)
+# widget22.bind("<Button-1>",Forward)
+# widget23.bind("<Button-1>",Forward)
+# widget24.bind("<Button-1>",Forward)
+# widget25.bind("<Button-1>",Forward)
+
+widget6.place(x=100, y=200)
+widget7.place(x=200, y=200)
+widget8.place(x=300, y=200)
+widget9.place(x=400, y=400)
+widget10.place(x=400, y=200)
+widget11.place(x=600, y=200)
+widget12.place(x=700, y=200)
+widget13.place(x=100, y=300)
+widget14.place(x=200, y=300)
+widget15.place(x=300, y=300)
+widget16.place(x=400, y=300)
+widget17.place(x=500, y=300)
+widget18.place(x=600, y=300)
+# widget19.place(x=750,y = 300)
+# widget20.place(x=100,y = 400)
+# widget21.place(x=200,y = 400)
+# widget22.place(x=300,y = 400)
+# widget23.place(x=400,y = 400)
+# widget24.place(x=500,y = 400)
+# widget25.place(x=600,y = 400)
+
+
+frame.pack()
+frame.configure(background="purple")
+frame.focus_set()
+
+root.configure(background="purple")
+
+root.mainloop()
