@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 largest = None
 smallest = None
 while True:
@@ -29,4 +30,37 @@ while True:
     
 
 print("Maximum is", largest)
+=======
+largest = None
+smallest = None
+while True:
+    num = input("Enter a number: ")
+   
+    if num == "done" :
+        break
+        print(num)
+            
+    try:
+        n = int(num)
+            
+    except:
+        print('Invalid input')
+        continue
+                    
+                   
+    if largest is None:
+        largest = n
+        
+    elif n>largest:
+        largest = n
+    
+    if smallest is None:
+        smallest = n
+        
+    elif n<smallest:
+        smallest = n
+    
+
+print("Maximum is", largest)
+>>>>>>> 65f4a9b60cb31db246ed257120ef33a47d8904da
 print("Minimum is", smallest)
