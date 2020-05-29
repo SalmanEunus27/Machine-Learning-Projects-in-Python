@@ -12,3 +12,6 @@ print(lion)
 print('Number of schools -',lion['School'])
 lion['Apple'] = lion['Apple'] + 2
 print(lion)
+
+l ={'Nostalgia':'23', 'Death':'25,976', 'cases':'10000'}
+print(l)
