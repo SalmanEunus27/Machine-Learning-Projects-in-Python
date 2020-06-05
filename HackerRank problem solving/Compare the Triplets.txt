@@ -21,7 +21,11 @@ def compareTriplets(a, b):
              Alice[1] = Alice[1]+1
              
     
+<<<<<<< HEAD
      #remove square bracket and commas while printing list
+=======
+    #remove square bracket and commas while printing list
+>>>>>>> 5466bbf3bf26fa085e765b550f154f8f6badb784
     print(' '.join(map(str, Alice)))       
 
 if __name__ == '__main__':
